@@ -11,7 +11,8 @@
 #include "esp_timer.h"
 #include "driver/gpio.h"
 
-static const auto RELAY_PIN = (gpio_num_t) 4;
+// D1
+static const auto RELAY_PIN = (gpio_num_t) 5;
 
 extern "C"
 void app_main()
@@ -31,8 +32,10 @@ void app_main()
     while (1)
     {
         vTaskDelay(1000 / portTICK_RATE_MS);
-        gpio_set_level(RELAY_PIN, 0);
-        vTaskDelay(1000 / portTICK_RATE_MS);
+        printf("on\n");
         gpio_set_level(RELAY_PIN, 1);
+        vTaskDelay(1000 / portTICK_RATE_MS);
+        printf("off\n");
+        gpio_set_level(RELAY_PIN, 0);
     }
 }
